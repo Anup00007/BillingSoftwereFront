@@ -4,9 +4,6 @@ import Category from '../category/Category';
 
 
 
-
-
-
 const DisplayCategory = ({categories,selectedCategory,setSelectedCategory}) => {
     return(
         <div className='row g-3' style={{ width: '100%', margin: 0 }}>
