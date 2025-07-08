@@ -1,5 +1,5 @@
 import './CustomerForm.css';
-const CustomerForm = ({customerName,mobileNumber,SetMobliNumber,setCustomerName}) => {
+const CustomerForm = ({ customerName, mobileNumber, setMobileNumber, setCustomerName }) => {
     return(
         <div className='p-3'>
 <div className="mb-3">
@@ -13,7 +13,7 @@ const CustomerForm = ({customerName,mobileNumber,SetMobliNumber,setCustomerName}
 <div className="mb-3">
 <div className="d-flex align-items-center gap-2">
     <label htmlFor="mobileNumber" className="col-4">Mobile number</label>
-    <input type="text"  className="form-control from-control-sm"id="mobileNumber" onChange={(e)=>SetMobliNumber(e.target.value)} value={mobileNumber}/>
+    <input type="text"  className="form-control from-control-sm" id="mobileNumber" onChange={(e) => setMobileNumber(e.target.value)} value={mobileNumber}/>
 </div>
 
 </div>

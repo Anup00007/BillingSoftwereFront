@@ -9,8 +9,8 @@ import { AppContext } from '../../contect/AppContext';
 const Explore=()=>{
     const{categories}=useContext(AppContext);
    const [ selectedCategory, setSelectedCategory ] = useState('');
-   const [customerName,SetCustomerName] =useState('');
-   const [mobileNumber,SetMobileNumber]=useState('');
+   const [customerName,setCustomerName] =useState('');
+   const [mobileNumber,setMobileNumber]=useState('');
 
     return(
         <div className="explore-container text-light">
@@ -33,8 +33,8 @@ categories={categories}></DisplayCategory>
 <CustomerForm
 customerName={customerName}
 mobileNumber={mobileNumber}
-SetCustomerName={SetCustomerName}
-SetMobileNumber={SetMobileNumber}
+setCustomerName={setCustomerName}
+setMobileNumber={setMobileNumber}
 ></CustomerForm>
 </div>
 <hr className="my-3 text-light" />
@@ -45,8 +45,8 @@ SetMobileNumber={SetMobileNumber}
 <CartSummery
 customerName={customerName}
 mobileNumber={mobileNumber}
-SetCustomerName={SetCustomerName}
-SetMobileNumber={SetMobileNumber}
+setCustomerName={setCustomerName}
+setMobileNumber={setMobileNumber}
 
 ></CartSummery>
 </div>
