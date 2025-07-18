@@ -15,5 +15,6 @@ const ManageItems=()=>
 
       </div>
     )
+    
 }
 export default ManageItems;

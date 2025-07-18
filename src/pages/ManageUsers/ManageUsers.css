@@ -1,27 +1,62 @@
-.users-container{
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-height: calc(100vh - 5rem);
-    box-sizing: border-box;
-    background-color: #2C3335;
- 
+.users-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  height: calc(100vh - 5rem);
+  box-sizing: border-box;
+  background-color: #2C3335;
+  flex-wrap: wrap;
 }
-.left-column{
-    flex: 0.7;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-padding: 16px;
-height: 100%;
-box-sizing: border-box;
-display: flex;
-flex-direction: column;
+
+/* Left Column */
+.left-column {
+  flex: 0.7;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(20, 19, 19); /* Optional for better contrast */
 }
-.right-column{
-    flex: 0.3;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    height: 100%;
-    box-sizing: border-box;
+
+/* Right Column */
+.right-column {
+  flex: 0.3;
+  border: 1px solid #353333;
+  border-radius: 8px;
+  padding: 16px;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: rgb(10, 10, 10); /* Optional */
+}
+
+/* Responsive Breakpoint for tablets and smaller */
+@media (max-width: 1024px) {
+  .left-column,
+  .right-column {
+    flex: 1 1 100%;
+    height: auto;
+  }
+
+  .users-container {
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+    padding: 10px;
+  }
+}
+
+/* Optional: extra small screen */
+@media (max-width: 600px) {
+  .left-column,
+  .right-column {
+    padding: 12px;
+  }
+
+  .users-container {
+    padding: 8px;
+  }
 }

@@ -49,6 +49,7 @@ const formData = new FormData();
         categoryId: '',   
         price: '',
         description: '',
+
     });
 }
         else{
@@ -85,12 +86,15 @@ finally {
                                  id="name"
                                   className="form-control"
                                   value={data.name}
-                                  placeholder="item name" onChange={onChangeHandler} />
+                                  placeholder="item name"
+                                   onChange={onChangeHandler}
+                                  required
+                                  />
                             </div>
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="category">Category
                                 </label>
-                                <select name="categoryId" id="categoryId" className="form-control" value={data.categoryId} onChange={onChangeHandler}>
+                                <select name="categoryId" id="categoryId" className="form-control" value={data.categoryId} onChange={onChangeHandler} required>
                                     <option value="">--SELECT Category</option>
                                     {categories.map((category, index) => (
                                         <option key={index} value={category.categoryId}>
@@ -109,7 +113,9 @@ finally {
                                 className="form-control"
                               placeholder="&#8377;200.00"
                               value={data.price}
-                              onChange={onChangeHandler}/>
+                              onChange={onChangeHandler}
+                              required
+                              />
                             </div>
                               <div className="mb-3">
                                 <label htmlFor="description" className="form-label">Description</label>

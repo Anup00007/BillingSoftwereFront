@@ -1,11 +1,9 @@
-import axios from "axios";
-export const createRazorpayOrder=async(data)=>{
+import api from "./api";
 
-  return await axios.post( 'http://localhost:8080/api/v1.0/payments/create-order',data,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}` }})
-}
-export const varifyPayment=async(paymentData)=>{
+export const createRazorpayOrder = async (data) => {
+  return await api.post("/payments/create-order", data);
+};
 
-  return await axios.post( 'http://localhost:8080/api/v1.0/payments/varify',paymentData,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}` }})
-
-
-}
+export const varifyPayment = async (paymentData) => {
+  return await api.post("/payments/varify", paymentData);
+};

@@ -56,7 +56,9 @@ const UserForm=({setUsers})=>{
                                   className="form-control"
                                   value={data.name}
 
-                                  placeholder="john"  onChange={onChangeHandler}/>
+                                  placeholder="john"  onChange={onChangeHandler}
+                                  required
+                                  />
                             </div>
                              <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Email</label>
@@ -65,7 +67,9 @@ const UserForm=({setUsers})=>{
                                  id="email"
                                   className="form-control"
                                   value={data.email}
-                                  placeholder="yourname@example.com"onChange={onChangeHandler} />
+                                  placeholder="yourname@example.com"onChange={onChangeHandler}
+                                  required
+                                  />
                             </div>
                               <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Password</label>
@@ -75,7 +79,9 @@ const UserForm=({setUsers})=>{
                                   className="form-control"
                                   placeholder="*****************" 
                                   value={data.password}
-                                  onChange={onChangeHandler}/>
+                                  onChange={onChangeHandler}
+                                  required
+                                  />
                             </div>
                              
                             
