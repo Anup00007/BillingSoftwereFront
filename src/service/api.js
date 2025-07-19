@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.https://gentle-learning-production.up.railway.app/api/v1.0;
 
 const api = axios.create({
   baseURL: BASE_URL,
