@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL =https://gentle-learning-production.up.railway.app/api/v1.0;
+const BASE_URL ="https://gentle-learning-production.up.railway.app/api/v1.0";
 
 const api = axios.create({
   baseURL: BASE_URL,
