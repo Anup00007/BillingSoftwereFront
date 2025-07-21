@@ -1,5 +1,11 @@
 import api from "./api";
 
 export const fetchDashboardData = async () => {
-  return await api.get("/dashboard");
+  try {
+    const res = await api.get("/dashboard");
+    return res;
+  } catch (err) {
+    console.error("Error fetching dashboard data:", err);
+    throw err; // Re-throw so caller can still handle it
+  }
 };
