@@ -1,7 +1,7 @@
 import api from "./api";
 
 export const latestOrders = async () => {
-  return await api.get("/orders");
+  return await api.get("/order/latest");
 };
 
 export const createOrder = async (order) => {
