@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { assets } from "../../assets/assets";
 import toast from "react-hot-toast";
 import { addCategory } from "../../service/categoryService";
-
 import { AppContext } from "../../contect/AppContext";
 
 const CategoryForm = () => {
@@ -14,51 +13,55 @@ const CategoryForm = () => {
         description: '',
         bgColor: '#ffffff',
     });
+
     useEffect(() => {
         console.log(data);
     }, [data]);
+
     const onChangeHandler = (e) => {
-        const value = e.target.value;
-        const name = e.target.name;
-        setData((Data) => ({
-            ...Data, [name]: value
+        const { name, value } = e.target;
+        setData(prev => ({
+            ...prev,
+            [name]: value
         }));
-    }
+    };
+
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        setLoading(true);
-       if (!image) {
+
+        if (!image) {
             toast.error("Please select an image");
-        
-         return;
+            return;
         }
-         setLoading(true);
+
+        setLoading(true);
+
         const formData = new FormData();
         formData.append('category', JSON.stringify(data));
         formData.append('file', image);
 
         try {
             const response = await addCategory(formData);
-            if (response.status === 201 ) {
-                setCategories([...categories, response.data]);
+            if ([200, 201].includes(response.status) && response.data) {
+                setCategories(prev => [...prev, response.data]);
                 toast.success("Category added successfully");
                 setData({
                     name: '',
                     description: '',
-                    bgColor: ' #ffffff',
+                    bgColor: '#ffffff',
                 });
-                setImage(true);
+                setImage(null);
+            } else {
+                toast.error("Unexpected response from server");
+                console.warn("Unexpected addCategory response:", response);
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Error adding category:", error);
             toast.error("Failed to add category");
-        }
-        finally {
+        } finally {
             setLoading(false);
         }
-    }
-
+    };
 
     return (
         <div className="mx-2 mt-2">
@@ -68,24 +71,31 @@ const CategoryForm = () => {
                         <form onSubmit={onSubmitHandler}>
                             <div className="mb-3">
                                 <label htmlFor="image" className="form-label">
-                                    <img src={image ? URL.createObjectURL(image) : assets.uploadlogo} alt="" width={48} />
+                                    <img
+                                        src={image ? URL.createObjectURL(image) : assets.uploadlogo}
+                                        alt="Upload"
+                                        width={48}
+                                    />
                                 </label>
-                                <input type="file"
+                                <input
+                                    type="file"
                                     name="image"
                                     id="image"
-                                    className='form-control'
-                                    
-                                    hidden onChange={e => setImage(e.target.files[0])} />
+                                    className="form-control"
+                                    hidden
+                                    onChange={e => setImage(e.target.files[0])}
+                                />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Name</label>
-                                <input type="text"
+                                <input
+                                    type="text"
                                     name="name"
                                     id="name"
                                     className="form-control"
-                                    placeholder="category name"
-                                    onChange={onChangeHandler}
+                                    placeholder="Category name"
                                     value={data.name}
+                                    onChange={onChangeHandler}
                                     required
                                 />
                             </div>
@@ -96,22 +106,21 @@ const CategoryForm = () => {
                                     name="description"
                                     id="description"
                                     className="form-control"
-                                    placeholder="category description"
-                                    onChange={onChangeHandler}
+                                    placeholder="Category description"
                                     value={data.description}
+                                    onChange={onChangeHandler}
                                 />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="bgColor" className="form-label">Background Color</label>
-                                <br></br>
+                                <br />
                                 <input
                                     type="color"
                                     name="bgColor"
                                     id="bgColor"
                                     className="width-10%"
-                                    placeholder="#ffffff"
-                                    onChange={onChangeHandler}
                                     value={data.bgColor}
+                                    onChange={onChangeHandler}
                                     required
                                 />
                             </div>
@@ -120,13 +129,14 @@ const CategoryForm = () => {
                                 className="btn btn-primary w-100"
                                 disabled={loading}
                             >
-                                {loading ? "saving..." : "Save"}
+                                {loading ? "Saving..." : "Save"}
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default CategoryForm;
