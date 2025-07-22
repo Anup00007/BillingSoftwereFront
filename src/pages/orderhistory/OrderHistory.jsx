@@ -12,7 +12,11 @@ const OrderHistory = () => {
                 const response = await latestOrders();
                 setOrders(response.data);
             } catch (error) {
-                console.log(error);
+                if (error.response && error.response.status === 403) {
+                    alert("You are not authorized to view order history (403 Forbidden).");
+                } else {
+                    console.log(error);
+                }
             } finally {
                 setLoading(false);
             }
@@ -87,3 +91,4 @@ const OrderHistory = () => {
 };
 
 export default OrderHistory;
+
