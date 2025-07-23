@@ -34,7 +34,8 @@ const App = () => {
 
   return (
     <div>
-      {location.pathname !== "/login" && <Manubar />}
+      {/* Show Manubar only if not on login page and user is authenticated */}
+      {location.pathname !== "/login" && auth.token && <Manubar />}
       <div><Toaster /></div>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
@@ -47,7 +48,8 @@ const App = () => {
         
         <Route path="/login" element={<LoginRoute element={<Login />} />} />
         <Route path="/orders" element={<OrderHistory />} />
-        <Route path="/" element={<Dashboard />} />
+        {/* Redirect "/" to login (or Dashboard if already logged in) */}
+        <Route path="/" element={<LoginRoute element={<Login />} />} />
         
         {/* Optional: handle 404 */}
         {/* <Route path="*" element={<NotFound />} /> */}
